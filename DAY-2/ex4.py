@@ -24,15 +24,24 @@ c='3+6j'
 #       c)
 
 # Concatination: TO adding the two string
-name1 = 'ashok'
-name2 = 'kumar'
-# print(name1 + name2)
+
+firstname = 'hari'
+secondname = 'kumar'
+
+# print(firstname + secondname)
+# harikumar
 
 # Multiplication of string
-c= 'python'
-print(c*5)
-# pythonpythonpythonpythonpython
 
-print('abc'-'bca')
+x1 = 'python '
+# print(x1*10)
+# python python python python python python python python python python
+
+
+# Subtraction of string
+
+print(firstname-secondname)
 # TypeError: unsupported operand type(s) for -: 'str' and 'str'
-print()
+
+
+
