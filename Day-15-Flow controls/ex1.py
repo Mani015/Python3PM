@@ -1,6 +1,6 @@
 # The flow control statements are divided into three categories
 #
-# Conditional statements
+# Conditional statements or decesision making statements
 # Iterative statements.
 # Transfer statements
 
@@ -23,10 +23,11 @@
 # Syntax: if condtion:
 #              block of code
 
-a = True
+a = False
 
 if a:
-    print('this condition is true')
+    print('condition is true if block code is open')
+
 
 
 # this condition is true
