@@ -1,0 +1,199 @@
+1).print 1st  ten even numbers,except 0;
+sol:
+
+
+
+
+
+
+2).print 1st  ten odd numbers using if condition:
+sol:
+
+
+
+
+
+
+3).What is a syntax error?
+ans:
+
+
+
+
+
+4).What is the difference between 10 / 3 and 10 // 3?
+sol:
+
+
+
+
+5)What is the result of 10 ** 3?
+sol:
+
+
+
+6).What is the result of 10 == “10”?
+sol:
+
+
+7).What is the result of “bag” > “apple”?
+sol:
+
+
+
+8).What is the result of not(True or False)?
+sol:
+
+9).What are the primitive built-in types in Python?write one example each of them?
+sol:
+
+
+
+
+10).What does range(1, 10, 2) return?
+sol:
+
+
+
+
+11).what is list? write down one example and how to findout  which type?
+sol:
+
+
+
+12).what is python ? where we use?
+sol.
+
+ 
+
+13).what is tuple? write down one example?
+sol:
+
+
+
+14)what is the output below code?
+   s1=12
+   s2='grk technology'
+   print(s1+s2)
+
+15).for i in range(1,20):
+   #write logic here.
+
+
+   
+   output=(1,2,3,4,5,6,7,8,9)
+
+
+16).x=12
+   y=41
+   z='addition'
+   if x+z+y:
+     print('It is True')
+   else:
+     print('It is false')
+sol:
+
+
+
+17).What is the output?
+   for i in 'python developer':
+      print(i)
+sol:
+
+
+
+
+
+
+18).What is the output?
+  list=[1,2,3,[11,22,33,44,[23,45,67,82,89],45,52,63,10],12,54]
+  print(list[3][4][2])
+sol:
+
+
+19)What is the output?
+   list=[1,2,3,[11,22,[23,45,67,82,89],33,44,[23,45,67,82,89],45,52,63,10],12,54]
+   print(list[2][2][5])
+sol:
+
+
+
+20).What is python indentation error?
+sol:
+
+
+
+21).l=[2,33,4,55,66,-21,10,36,45]
+    #write logic here
+
+
+
+
+output:3,34,5,56,67,-20,11,37,46,
+
+22).What is the difference between list and set?
+ans:
+
+
+
+
+23).What is the difference between list and set?
+sol:
+
+
+
+
+24).l=[2,33,4,55,66,-21,10,36,45]
+        #write logic here
+
+
+
+
+
+
+
+
+
+output:3,34,5,56,67,
+
+
+25).What is the output?
+    a=10
+    b=25
+    print(a and b)
+
+
+
+26).write down the value of [0b10100]?
+sol:
+
+
+27).what is tuple ? write down two example's?
+sol:
+
+
+28).write down the list methods? 
+sol:
+
+
+
+
+
+29).l={1,2}
+   #write down logic here
+
+
+
+output:{1, 2, 22, 33}
+
+30).write down heterogeneous example's?
+
+
+
+
+
+
+
+
+
+
