@@ -1,0 +1,37 @@
+---------------------------------------------------------------------------------------------------------------------------------------------
+NOT Null
+This constraint specifies that the column cannot have null or empty values. the below statement creates a table with not null constraint;
+
+create table student(sid int primary key,sname varchar(20), sage int not null);
+insert into student(sid, sname, sage) values(1, 'aa',2);
+insert into student(sid, sname ,sage) values(2, 'aa',null);
+
+set not null alter:
+alter table student change sage sage int not null;
+
+drop not null key alter;
+alter table student change sage sage int null;
+=======================================================================================================================================
+Foreign key : This constraint used to link two tables together it is known as  the referencing key.A foreign key column matches the primary key coloum of another table
+
+
+
+create table departmnet(depid int primary key, departmentname varchar(30));
+create table data(empid int primary key, ename varchar(30), eage int , edepid int,foreign key(edepid) references departmnet(depid));
+desc data;
+insert into data values(1, 'jagan', 23, 1);
+insert into data values(2, 'avinash', 21, 3);
+insert into data values(3, 'ramu', 23, 2);
+insert into data values(4, 'guna', 20, 5);
+
+select * from data;
+select * from departmnet;
+
+Alter Foreign key:
+
+Alter child_table_name ADD Foreign key(column name) references Parent_table_name (column name);
+
+Drop Foreign key:
+
+Alter child_table_name Drop Foreign key(column name);
+---------------------------------------------------------------------------------------------------------

@@ -1,0 +1,633 @@
+Data Definition Language(DDL) is a subset of SQL and a part of DBMS(Database Management System). DDL consist of Commands to commands like CREATE, ALTER, TRUNCATE and DROP. These commands are used to create or modify the tables in SQL.
+
+DDL Commands :
+In this section, We will cover the following DDL commands as follows.
+
+1.Create
+2.Alter 
+3.truncate
+4.drop
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Command-1 :
+CREATE :
+This command is used to create a new table in SQL. The user has to give information like table name, column names, and their datatypes.
+
+Syntax –
+
+CREATE TABLE table_name
+(
+column_1 datatype,
+column_2 datatype,
+column_3 datatype,
+....
+);
+
+Example:create table emp(sno int(2), Firstname varchar(30), LastName varchar(20), age int, salary int);
+Query OK, 0 rows affected, 1 warning (1.41 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_day1 |
++----------------+
+| emp            |
++----------------+
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.12 sec)
+--------------------------------------------------------------------------------------------------------------------------------------
+desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.12 sec)
+
+The ALTER TABLE statement is used to add, delete, or modify columns in an existing table.
+
+The ALTER TABLE statement is also used to add and drop various constraints on an existing table.
+ADD COLUMN:
+syntax:ALTER TABLE tablename ADD columnname datatype;
+
+mysql> alter table emp add email varchar(30);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
+| email     | varchar(30) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table emp add location varchar(30) after salary;
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
+| location  | varchar(30) | YES  |     | NULL    |       |
+| email     | varchar(30) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+RENAME COLUMN NAME:
+sy: alter table tablename rename coloumn oldcolumn_name to newcolumnname_name;
+
+mysql> alter table emp rename column location to Address;
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
+| Address   | varchar(30) | YES  |     | NULL    |       |
+| email     | varchar(30) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> alter table emp drop email;
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
+| Address   | varchar(30) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+ALTER TABLE - MODIFY COLUMN
+To change the data type of a column in a table, use the following syntax:
+syntax:
+ALTER TABLE table_name
+MODIFY COLUMN column_name datatype;
+
+mysql> alter table emp modify column address varchar(50);
+Query OK, 0 rows affected (0.22 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
+| address   | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter tABLE EmP DroP AGE;
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
+| address   | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+DML(Data manupulation Language):
+1.Inset:
+The INSERT INTO statement of SQL is used to insert a new row in a table. There are two ways of using INSERT INTO statement for inserting rows:
+
+Microsoft Windows [Version 10.0.19045.2846]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\DELL>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| bird               |
+| cat                |
+| comapany           |
+| company            |
+| employee           |
+| hospital           |
+| information_schema |
+| mysql              |
+| pandu              |
+| performance_schema |
+| product            |
+| saw                |
+| stu                |
+| student            |
+| sys                |
++--------------------+
+15 rows in set (1.65 sec)
+
+mysql> drop database comapany;
+Query OK, 1 row affected (2.70 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| bird               |
+| cat                |
+| company            |
+| employee           |
+| hospital           |
+| information_schema |
+| mysql              |
+| pandu              |
+| performance_schema |
+| product            |
+| saw                |
+| stu                |
+| student            |
+| sys                |
++--------------------+
+14 rows in set (0.00 sec)
+
+mysql> create database Day1;
+Query OK, 1 row affected (0.12 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| bird               |
+| cat                |
+| company            |
+| day1               |
+| employee           |
+| hospital           |
+| information_schema |
+| mysql              |
+| pandu              |
+| performance_schema |
+| product            |
+| saw                |
+| stu                |
+| student            |
+| sys                |
++--------------------+
+15 rows in set (0.00 sec)
+
+mysql> use day1;
+Database changed
+mysql> show tables;
+Empty set (0.20 sec)
+
+mysql> create table emp(sno int(2), Firstname varchar(30), LastName varchar(20), age int, salary int);
+Query OK, 0 rows affected, 1 warning (1.41 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_day1 |
++----------------+
+| emp            |
++----------------+
+1 row in set (0.06 sec)
+
+mysql> show coloumns in emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'coloumns in emp' at line 1
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.12 sec)
+
+mysql> alter table emp add email varchar(30);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
+| email     | varchar(30) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table emp add location varchar(30) after salary;
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
+| location  | varchar(30) | YES  |     | NULL    |       |
+| email     | varchar(30) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> alter table emp rename location to Address;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to Address' at line 1
+mysql> alter table emp rename location  Address;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Address' at line 1
+mysql> alter table emp rename column location to Address;
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
+| Address   | varchar(30) | YES  |     | NULL    |       |
+| email     | varchar(30) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> alter table emp drop email;
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
+| Address   | varchar(30) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table emp modify column address varchar(50);
+Query OK, 0 rows affected (0.22 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
+| address   | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter tABLE EmP DroP AGE;
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
+| address   | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from emp;
++------+-----------+----------+--------+---------+
+| sno  | Firstname | LastName | salary | address |
++------+-----------+----------+--------+---------+
+|    1 | martin    | garrix   |  10000 | london  |
+|    2 | Abhilash  | Naidu    |  20000 | paris   |
+|    3 | ashwini   | gudi     |  30000 | china   |
+|    4 | Irfan     | Bhai     |  40000 | Dubai   |
+|    3 | ashwini   | gudi     |  30000 | china   |
+|    4 | Irfan     | Bhai     |  40000 | Dubai   |
++------+-----------+----------+--------+---------+
+6 rows in set (0.03 sec)
+
+mysql> select firstname, sno from emp;
++-----------+------+
+| firstname | sno  |
++-----------+------+
+| martin    |    1 |
+| Abhilash  |    2 |
+| ashwini   |    3 |
+| Irfan     |    4 |
+| ashwini   |    3 |
+| Irfan     |    4 |
++-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> delete from emp where sno = 3;
+Query OK, 2 rows affected (0.07 sec)
+
+mysql> select * from emp;
++------+-----------+----------+--------+---------+
+| sno  | Firstname | LastName | salary | address |
++------+-----------+----------+--------+---------+
+|    1 | martin    | garrix   |  10000 | london  |
+|    2 | Abhilash  | Naidu    |  20000 | paris   |
+|    4 | Irfan     | Bhai     |  40000 | Dubai   |
+|    4 | Irfan     | Bhai     |  40000 | Dubai   |
++------+-----------+----------+--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> update emp set address = 'india' where sno=4;
+Query OK, 2 rows affected (0.09 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from emp;
++------+-----------+----------+--------+---------+
+| sno  | Firstname | LastName | salary | address |
++------+-----------+----------+--------+---------+
+|    1 | martin    | garrix   |  10000 | london  |
+|    2 | Abhilash  | Naidu    |  20000 | paris   |
+|    4 | Irfan     | Bhai     |  40000 | india   |
+|    4 | Irfan     | Bhai     |  40000 | india   |
++------+-----------+----------+--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> insert into emp values(5, 'diwakar', 'diwakar',60000,'hyd');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into emp values(5, 'diwakar', 'diwakar',60000,'hyd'),(6,'ashwini','gudi',160000,'usa'),(7,'rangith','kumar',45000,'chennai');
+Query OK, 3 rows affected (0.06 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++------+-----------+----------+--------+---------+
+| sno  | Firstname | LastName | salary | address |
++------+-----------+----------+--------+---------+
+|    1 | martin    | garrix   |  10000 | london  |
+|    2 | Abhilash  | Naidu    |  20000 | paris   |
+|    4 | Irfan     | Bhai     |  40000 | india   |
+|    4 | Irfan     | Bhai     |  40000 | india   |
+|    5 | diwakar   | diwakar  |  60000 | hyd     |
+|    5 | diwakar   | diwakar  |  60000 | hyd     |
+|    6 | ashwini   | gudi     | 160000 | usa     |
+|    7 | rangith   | kumar    |  45000 | chennai |
++------+-----------+----------+--------+---------+
+8 rows in set (0.00 sec)
+
+mysql> update emp set address='india' where sno=2;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from emp;
++------+-----------+----------+--------+---------+
+| sno  | Firstname | LastName | salary | address |
++------+-----------+----------+--------+---------+
+|    1 | martin    | garrix   |  10000 | london  |
+|    2 | Abhilash  | Naidu    |  20000 | india   |
+|    4 | Irfan     | Bhai     |  40000 | india   |
+|    4 | Irfan     | Bhai     |  40000 | india   |
+|    5 | diwakar   | diwakar  |  60000 | hyd     |
+|    5 | diwakar   | diwakar  |  60000 | hyd     |
+|    6 | ashwini   | gudi     | 160000 | usa     |
+|    7 | rangith   | kumar    |  45000 | chennai |
++------+-----------+----------+--------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from emp limit 5;
++------+-----------+----------+--------+---------+
+| sno  | Firstname | LastName | salary | address |
++------+-----------+----------+--------+---------+
+|    1 | martin    | garrix   |  10000 | london  |
+|    2 | Abhilash  | Naidu    |  20000 | india   |
+|    4 | Irfan     | Bhai     |  40000 | india   |
+|    4 | Irfan     | Bhai     |  40000 | india   |
+|    5 | diwakar   | diwakar  |  60000 | hyd     |
++------+-----------+----------+--------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from emp limit 4;
++------+-----------+----------+--------+---------+
+| sno  | Firstname | LastName | salary | address |
++------+-----------+----------+--------+---------+
+|    1 | martin    | garrix   |  10000 | london  |
+|    2 | Abhilash  | Naidu    |  20000 | india   |
+|    4 | Irfan     | Bhai     |  40000 | india   |
+|    4 | Irfan     | Bhai     |  40000 | india   |
++------+-----------+----------+--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from emp limit 10;
++------+-----------+----------+--------+---------+
+| sno  | Firstname | LastName | salary | address |
++------+-----------+----------+--------+---------+
+|    1 | martin    | garrix   |  10000 | london  |
+|    2 | Abhilash  | Naidu    |  20000 | india   |
+|    4 | Irfan     | Bhai     |  40000 | india   |
+|    4 | Irfan     | Bhai     |  40000 | india   |
+|    5 | diwakar   | diwakar  |  60000 | hyd     |
+|    5 | diwakar   | diwakar  |  60000 | hyd     |
+|    6 | ashwini   | gudi     | 160000 | usa     |
+|    7 | rangith   | kumar    |  45000 | chennai |
++------+-----------+----------+--------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select firstname,lastname,address from emp;
++-----------+----------+---------+
+| firstname | lastname | address |
++-----------+----------+---------+
+| martin    | garrix   | london  |
+| Abhilash  | Naidu    | india   |
+| Irfan     | Bhai     | india   |
+| Irfan     | Bhai     | india   |
+| diwakar   | diwakar  | hyd     |
+| diwakar   | diwakar  | hyd     |
+| ashwini   | gudi     | usa     |
+| rangith   | kumar    | chennai |
++-----------+----------+---------+
+8 rows in set (0.00 sec)
+
+mysql> truncate table emp;
+Query OK, 0 rows affected (0.36 sec)
+
+mysql> select * from emp;
+Empty set (0.00 sec)
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| sno       | int         | YES  |     | NULL    |       |
+| Firstname | varchar(30) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| salary    | int         | YES  |     | NULL    |       |
+| address   | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from stu;
+Empty set (0.00 sec)
+
+mysql> insert into stu values(1,'abc','xyz',98,'tenth');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> set autocommit=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into stu values(2,'mass','don',98,'tenth');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+-------+
+| sno  | firstname | lastname | marks | class |
++------+-----------+----------+-------+-------+
+|    1 | abc       | xyz      |    98 | tenth |
+|    2 | mass      | don      |    98 | tenth |
++------+-----------+----------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

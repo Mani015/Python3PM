@@ -1,0 +1,201 @@
+
+INNER JOIN: inner join execute the values which are common in both tables.
+
+(SYNTAX : SELECT coloum_name FROM table_1 INNER JOIN table_2 ON join condition)
+
+mysql> create table members (mem_id int,mem_name varchar(30),mem_age int);
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> create table committee (com_id int,com_name varchar(30));
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> insert into members values (1,'divakar',22),(2,'gowtham',24),(3,'khavi',21),(4,'mohan',25),(5,'sai',27);
+Query OK, 5 rows affected (0.10 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> insert into committee values (1,'khavi'),(2,'surya'),(3,'divakar'),(4,'nivin pauly'),(5,'gowtham');
+Query OK, 5 rows affected (0.17 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from members;
++--------+----------+---------+
+| mem_id | mem_name | mem_age |
++--------+----------+---------+
+|      1 | divakar  |      22 |
+|      2 | gowtham  |      24 |
+|      3 | khavi    |      21 |
+|      4 | mohan    |      25 |
+|      5 | sai      |      27 |
++--------+----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from committee;
++--------+-------------+
+| com_id | com_name    |
++--------+-------------+
+|      1 | khavi       |
+|      2 | surya       |
+|      3 | divakar     |
+|      4 | nivin pauly |
+|      5 | gowtham     |
++--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select mem_id,mem_name,com_id,com_name from members inner join committee on mem_name = com_name;
++--------+----------+--------+----------+
+| mem_id | mem_name | com_id | com_name |
++--------+----------+--------+----------+
+|      3 | khavi    |      1 | khavi    |
+|      1 | divakar  |      3 | divakar  |
+|      2 | gowtham  |      5 | gowtham  |
++--------+----------+--------+----------+
+3 rows in set (0.00 sec)
+========================================================================================================================
+
+RIGHT JOIN: # The right join select the data from the right table and then it compare every row in the left table.
+
+            # The Unmatching data on left table will be written as NULL.
+
+(SYNTAX : SELECT column_name FROM table 1 RIGHT JOIN table_2 ON join condition)
+
+mysql> select * from members;
++--------+----------+---------+
+| mem_id | mem_name | mem_age |
++--------+----------+---------+
+|      1 | divakar  |      22 |
+|      2 | gowtham  |      24 |
+|      3 | khavi    |      21 |
+|      4 | mohan    |      25 |
+|      5 | sai      |      27 |
++--------+----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from committee;
++--------+-------------+
+| com_id | com_name    |
++--------+-------------+
+|      1 | khavi       |
+|      2 | surya       |
+|      3 | divakar     |
+|      4 | nivin pauly |
+|      5 | gowtham     |
++--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select mem_id,mem_name,com_id,com_name from members right join committee on mem_name=com_name;
++--------+----------+--------+-------------+
+| mem_id | mem_name | com_id | com_name    |
++--------+----------+--------+-------------+
+|      3 | khavi    |      1 | khavi       |
+|   NULL | NULL     |      2 | surya       |
+|      1 | divakar  |      3 | divakar     |
+|   NULL | NULL     |      4 | nivin pauly |
+|      2 | gowtham  |      5 | gowtham     |
++--------+----------+--------+-------------+
+5 rows in set (0.00 sec)
+
+==========================================================================================================================
+
+LEFT JOIN : # The left  join select the data from the left table and then it compare every row in the right table.
+
+            # The Unmatching data on right table will be written as NULL.
+
+
+( SYNTAX : SELECT column_name FROM table_1 LEFT JOIN table_2 ON join condition)
+
+mysql> select * from members;
++--------+----------+---------+
+| mem_id | mem_name | mem_age |
++--------+----------+---------+
+|      1 | divakar  |      22 |
+|      2 | gowtham  |      24 |
+|      3 | khavi    |      21 |
+|      4 | mohan    |      25 |
+|      5 | sai      |      27 |
++--------+----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from committee;
++--------+-------------+
+| com_id | com_name    |
++--------+-------------+
+|      1 | khavi       |
+|      2 | surya       |
+|      3 | divakar     |
+|      4 | nivin pauly |
+|      5 | gowtham     |
++--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select mem_id,mem_name,com_id,com_name from members left join committee on com_name=mem_name;
++--------+----------+--------+----------+
+| mem_id | mem_name | com_id | com_name |
++--------+----------+--------+----------+
+|      1 | divakar  |      3 | divakar  |
+|      2 | gowtham  |      5 | gowtham  |
+|      3 | khavi    |      1 | khavi    |
+|      4 | mohan    |   NULL | NULL     |
+|      5 | sai      |   NULL | NULL     |
++--------+----------+--------+----------+
+5 rows in set (0.00 sec)
+
+
+FULL JOIN : Full join create a new table by joining the two table comparing each row.
+
+(SYNTAX : SELECT column_name FROM table_1 FULL JOIN table_2) 
+
+mysql> select *from members;
++--------+----------+---------+
+| mem_id | mem_name | mem_age |
++--------+----------+---------+
+|      1 | divakar  |      22 |
+|      2 | gowtham  |      24 |
+|      3 | khavi    |      21 |
+|      4 | mohan    |      25 |
+|      5 | sai      |      27 |
++--------+----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from committee;
++--------+-------------+
+| com_id | com_name    |
++--------+-------------+
+|      1 | khavi       |
+|      2 | surya       |
+|      3 | divakar     |
+|      4 | nivin pauly |
+|      5 | gowtham     |
++--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select mem_id,mem_name,com_id,com_name from members full join committee;
++--------+----------+--------+-------------+
+| mem_id | mem_name | com_id | com_name    |
++--------+----------+--------+-------------+
+|      5 | sai      |      1 | khavi       |
+|      4 | mohan    |      1 | khavi       |
+|      3 | khavi    |      1 | khavi       |
+|      2 | gowtham  |      1 | khavi       |
+|      1 | divakar  |      1 | khavi       |
+|      5 | sai      |      2 | surya       |
+|      4 | mohan    |      2 | surya       |
+|      3 | khavi    |      2 | surya       |
+|      2 | gowtham  |      2 | surya       |
+|      1 | divakar  |      2 | surya       |
+|      5 | sai      |      3 | divakar     |
+|      4 | mohan    |      3 | divakar     |
+|      3 | khavi    |      3 | divakar     |
+|      2 | gowtham  |      3 | divakar     |
+|      1 | divakar  |      3 | divakar     |
+|      5 | sai      |      4 | nivin pauly |
+|      4 | mohan    |      4 | nivin pauly |
+|      3 | khavi    |      4 | nivin pauly |
+|      2 | gowtham  |      4 | nivin pauly |
+|      1 | divakar  |      4 | nivin pauly |
+|      5 | sai      |      5 | gowtham     |
+|      4 | mohan    |      5 | gowtham     |
+|      3 | khavi    |      5 | gowtham     |
+|      2 | gowtham  |      5 | gowtham     |
+|      1 | divakar  |      5 | gowtham     |
++--------+----------+--------+-------------+
+25 rows in set, 1 warning (0.00 sec)

@@ -1,0 +1,702 @@
+DCL (Data Control Language)
+DCL includes commands such as GRANT and REVOKE which mainly deal with the rights, permissions, and other controls of the database system. 
+
+List of  DCL commands: 
+
+GRANT: This command gives users access privileges to the database.
+Syntax:
+
+GRANT SELECT, UPDATE ON MY_TABLE TO SOME_USER, ANOTHER_USER;
+
+---------------------------------------------------------------------------------
+REVOKE: This command withdraws the user’s access privileges given by using the GRANT command.
+
+Syntax:
+
+REVOKE SELECT, UPDATE ON MY_TABLE FROM USER1, USER2;  
+----------------------------------------------------------------------------------------------------
+Microsoft Windows [Version 10.0.19045.2965]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\DELL>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| company            |
+| day1               |
+| employee           |
+| hospital           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| product            |
+| saw                |
+| student            |
+| sys                |
++--------------------+
+11 rows in set (0.36 sec)
+
+mysql> use day1
+Database changed
+mysql> show tables;
++----------------------------+
+| Tables_in_day1             |
++----------------------------+
+| appone_patient             |
+| auth_group                 |
+| auth_group_permissions     |
+| auth_permission            |
+| auth_user                  |
+| auth_user_groups           |
+| auth_user_user_permissions |
+| django_admin_log           |
+| django_content_type        |
+| django_migrations          |
+| django_session             |
+| stu                        |
++----------------------------+
+12 rows in set (0.34 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+-------+
+| sno  | firstname | lastname | marks | class |
++------+-----------+----------+-------+-------+
+|    1 | abc       | xyz      |    98 | tenth |
++------+-----------+----------+-------+-------+
+1 row in set (0.11 sec)
+
+mysql> create user dell identified by 'python';
+Query OK, 0 rows affected (0.27 sec)
+
+mysql> quit
+Bye
+
+C:\Users\DELL>mysql -u root -p;
+mysql: [Warning] Using a password on the command line interface can be insecure.
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+
+C:\Users\DELL>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| company            |
+| day1               |
+| employee           |
+| hospital           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| product            |
+| saw                |
+| student            |
+| sys                |
++--------------------+
+11 rows in set (0.00 sec)
+
+mysql> grant insert,select on stu to dell;
+ERROR 1046 (3D000): No database selected
+mysql> use day1;
+Database changed
+mysql> grant insert,select on stu to dell;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> quit
+Bye
+
+C:\Users\DELL>mysql -u dell -p
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| day1               |
+| information_schema |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> use day1;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_day1 |
++----------------+
+| stu            |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+-------+
+| sno  | firstname | lastname | marks | class |
++------+-----------+----------+-------+-------+
+|    1 | abc       | xyz      |    98 | tenth |
++------+-----------+----------+-------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into stu values(2,'martin','luthor',90,'nine');
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into stu values(3,'stalin','hendry',92,'seventh');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+---------+
+| sno  | firstname | lastname | marks | class   |
++------+-----------+----------+-------+---------+
+|    1 | abc       | xyz      |    98 | tenth   |
+|    2 | martin    | luthor   |    90 | nine    |
+|    3 | stalin    | hendry   |    92 | seventh |
++------+-----------+----------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> delete from stu where sno=3;
+ERROR 1142 (42000): DELETE command denied to user 'dell'@'localhost' for table 'stu'
+mysql> update stu set marks=100 where firstname='martin';
+ERROR 1142 (42000): UPDATE command denied to user 'dell'@'localhost' for table 'stu'
+mysql> quit
+Bye
+
+C:\Users\DELL>mysql -u root -p;
+mysql: [Warning] Using a password on the command line interface can be insecure.
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+
+C:\Users\DELL>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use day1;
+Database changed
+mysql> show tables;
++----------------------------+
+| Tables_in_day1             |
++----------------------------+
+| appone_patient             |
+| auth_group                 |
+| auth_group_permissions     |
+| auth_permission            |
+| auth_user                  |
+| auth_user_groups           |
+| auth_user_user_permissions |
+| django_admin_log           |
+| django_content_type        |
+| django_migrations          |
+| django_session             |
+| stu                        |
++----------------------------+
+12 rows in set (0.01 sec)
+
+mysql> grant update,delete on stu to dell;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> quit
+Bye
+
+C:\Users\DELL>mysql -u dell -p
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use day1;
+Database changed
+mysql> select * from stu;
++------+-----------+----------+-------+---------+
+| sno  | firstname | lastname | marks | class   |
++------+-----------+----------+-------+---------+
+|    1 | abc       | xyz      |    98 | tenth   |
+|    2 | martin    | luthor   |    90 | nine    |
+|    3 | stalin    | hendry   |    92 | seventh |
++------+-----------+----------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> update stu set marks=100 where firstname='martin';
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from stu;
++------+-----------+----------+-------+---------+
+| sno  | firstname | lastname | marks | class   |
++------+-----------+----------+-------+---------+
+|    1 | abc       | xyz      |    98 | tenth   |
+|    2 | martin    | luthor   |   100 | nine    |
+|    3 | stalin    | hendry   |    92 | seventh |
++------+-----------+----------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> delete stu where class='tenth';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where class='tenth'' at line 1
+mysql> delete from stu where class='tenth';
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+---------+
+| sno  | firstname | lastname | marks | class   |
++------+-----------+----------+-------+---------+
+|    2 | martin    | luthor   |   100 | nine    |
+|    3 | stalin    | hendry   |    92 | seventh |
++------+-----------+----------+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> quit
+Bye
+
+C:\Users\DELL>musql -u root -p;
+'musql' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\DELL>musql -u root -p
+'musql' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\DELL>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use day1
+Database changed
+mysql> revoke insert,delete on stu from dell;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> quit
+Bye
+
+C:\Users\DELL>mysql -u dell -p;
+mysql: [Warning] Using a password on the command line interface can be insecure.
+ERROR 1045 (28000): Access denied for user 'dell'@'localhost' (using password: YES)
+
+C:\Users\DELL>mysql -u dell -p
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use day1;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_day1 |
++----------------+
+| stu            |
++----------------+
+1 row in set (0.01 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+---------+
+| sno  | firstname | lastname | marks | class   |
++------+-----------+----------+-------+---------+
+|    2 | martin    | luthor   |   100 | nine    |
+|    3 | stalin    | hendry   |    92 | seventh |
++------+-----------+----------+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> update stu set lastname = 'clark' where sno=2;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from stu;
++------+-----------+----------+-------+---------+
+| sno  | firstname | lastname | marks | class   |
++------+-----------+----------+-------+---------+
+|    2 | martin    | clark    |   100 | nine    |
+|    3 | stalin    | hendry   |    92 | seventh |
++------+-----------+----------+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> insert into stu values(4,'python','developer',100,'threemothns');
+ERROR 1142 (42000): INSERT command denied to user 'dell'@'localhost' for table 'stu'
+mysql> delete from stu where sno=4;
+ERROR 1142 (42000): DELETE command denied to user 'dell'@'localhost' for table 'stu'
+-----------------------------------------------------------------------------------------------------------------
+TCL (Transaction Control Language)
+Transactions group a set of tasks into a single execution unit. Each transaction begins with a specific task and ends when all the tasks in the group successfully complete. If any of the tasks fail, the transaction fails. Therefore, a transaction has only two results: success or failure. You can explore more about transactions here. Hence, the following TCL commands are used to control the execution of a transaction: 
+
+BEGIN: Opens a Transaction.
+
+COMMIT: Commits a Transaction.
+
+Syntax:
+
+COMMIT; 
+
+ set autocommit=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into stu values(5,'abhi','nandan',99,'fourth');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into stu values(6,'diwakar','nandan',100,'fiveth');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+---------+
+| sno  | firstname | lastname | marks | class   |
++------+-----------+----------+-------+---------+
+|    2 | martin    | clark    |   100 | nine    |
+|    3 | stalin    | hendry   |    92 | seventh |
+|    4 | abhilash  | kumar    |    99 | second  |
+|    5 | abhi      | nandan   |    99 | fourth  |
+|    6 | diwakar   | nandan   |   100 | fiveth  |
++------+-----------+----------+-------+---------+
+5 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+---------+
+| sno  | firstname | lastname | marks | class   |
++------+-----------+----------+-------+---------+
+|    2 | martin    | clark    |   100 | nine    |
+|    3 | stalin    | hendry   |    92 | seventh |
+|    4 | abhilash  | kumar    |    99 | second  |
+|    5 | abhi      | nandan   |    99 | fourth  |
+|    6 | diwakar   | nandan   |   100 | fiveth  |
++------+-----------+----------+-------+---------+
+-----------------------------------------------------------------------------------------------------------------------
+Microsoft Windows [Version 10.0.19045.2965]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\DELL>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 24
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use day1;
+Database changed
+mysql> select * from stu;
++------+-----------+----------+-------+---------+
+| sno  | firstname | lastname | marks | class   |
++------+-----------+----------+-------+---------+
+|    3 | stalin    | hendry   |    92 | seventh |
+|    4 | abhilash  | kumar    |    99 | second  |
+|    5 | abhi      | naidu    |    99 | fourth  |
+|    6 | diwakar   | nandan   |   100 | fiveth  |
++------+-----------+----------+-------+---------+
+4 rows in set (0.19 sec)
+
+mysql> insert into stu values(7,'ashwini','python',99,'third');
+Query OK, 1 row affected (0.36 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+---------+
+| sno  | firstname | lastname | marks | class   |
++------+-----------+----------+-------+---------+
+|    3 | stalin    | hendry   |    92 | seventh |
+|    4 | abhilash  | kumar    |    99 | second  |
+|    5 | abhi      | naidu    |    99 | fourth  |
+|    6 | diwakar   | nandan   |   100 | fiveth  |
+|    7 | ashwini   | python   |    99 | third   |
++------+-----------+----------+-------+---------+
+5 rows in set (0.07 sec)
+
+mysql> delete from stu where sno=3;
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+--------+
+| sno  | firstname | lastname | marks | class  |
++------+-----------+----------+-------+--------+
+|    4 | abhilash  | kumar    |    99 | second |
+|    5 | abhi      | naidu    |    99 | fourth |
+|    6 | diwakar   | nandan   |   100 | fiveth |
+|    7 | ashwini   | python   |    99 | third  |
++------+-----------+----------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+--------+
+| sno  | firstname | lastname | marks | class  |
++------+-----------+----------+-------+--------+
+|    4 | abhilash  | kumar    |    99 | second |
+|    5 | abhi      | naidu    |    99 | fourth |
+|    6 | diwakar   | nandan   |   100 | fiveth |
+|    7 | ashwini   | python   |    99 | third  |
++------+-----------+----------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> set autocommit=0;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into stu values(3,'stalin','python',99,'third');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+--------+
+| sno  | firstname | lastname | marks | class  |
++------+-----------+----------+-------+--------+
+|    4 | abhilash  | kumar    |    99 | second |
+|    5 | abhi      | naidu    |    99 | fourth |
+|    6 | diwakar   | nandan   |   100 | fiveth |
+|    7 | ashwini   | python   |    99 | third  |
+|    3 | stalin    | python   |    99 | third  |
++------+-----------+----------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+--------+
+| sno  | firstname | lastname | marks | class  |
++------+-----------+----------+-------+--------+
+|    4 | abhilash  | kumar    |    99 | second |
+|    5 | abhi      | naidu    |    99 | fourth |
+|    6 | diwakar   | nandan   |   100 | fiveth |
+|    7 | ashwini   | python   |    99 | third  |
++------+-----------+----------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+--------+
+| sno  | firstname | lastname | marks | class  |
++------+-----------+----------+-------+--------+
+|    4 | abhilash  | kumar    |    99 | second |
+|    5 | abhi      | naidu    |    99 | fourth |
+|    6 | diwakar   | nandan   |   100 | fiveth |
+|    7 | ashwini   | python   |    99 | third  |
++------+-----------+----------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> insert into stu values(2,'stalin','mark',92,'third');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+--------+
+| sno  | firstname | lastname | marks | class  |
++------+-----------+----------+-------+--------+
+|    4 | abhilash  | kumar    |    99 | second |
+|    5 | abhi      | naidu    |    99 | fourth |
+|    6 | diwakar   | nandan   |   100 | fiveth |
+|    7 | ashwini   | python   |    99 | third  |
+|    2 | stalin    | mark     |    92 | third  |
++------+-----------+----------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+--------+
+| sno  | firstname | lastname | marks | class  |
++------+-----------+----------+-------+--------+
+|    4 | abhilash  | kumar    |    99 | second |
+|    5 | abhi      | naidu    |    99 | fourth |
+|    6 | diwakar   | nandan   |   100 | fiveth |
+|    7 | ashwini   | python   |    99 | third  |
+|    2 | stalin    | mark     |    92 | third  |
++------+-----------+----------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> savepoint to a;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to a' at line 1
+mysql> save point to a;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'save point to a' at line 1
+mysql> savepoint a;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> insert into stu values(8,'mani','kumar',97,'python');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> delete from stu where sno=2;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> update stu set lastname='ratnam' where firstname='mani';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from stu;
++------+-----------+----------+-------+--------+
+| sno  | firstname | lastname | marks | class  |
++------+-----------+----------+-------+--------+
+|    4 | abhilash  | kumar    |    99 | second |
+|    5 | abhi      | naidu    |    99 | fourth |
+|    6 | diwakar   | nandan   |   100 | fiveth |
+|    7 | ashwini   | python   |    99 | third  |
+|    8 | mani      | ratnam   |    97 | python |
++------+-----------+----------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> savepoint b;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into stu values(9,'santhosh','kumar', 99,'second');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into stu values(10,'santhosh','varma', 100,'second');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+--------+
+| sno  | firstname | lastname | marks | class  |
++------+-----------+----------+-------+--------+
+|    4 | abhilash  | kumar    |    99 | second |
+|    5 | abhi      | naidu    |    99 | fourth |
+|    6 | diwakar   | nandan   |   100 | fiveth |
+|    7 | ashwini   | python   |    99 | third  |
+|    8 | mani      | ratnam   |    97 | python |
+|    9 | santhosh  | kumar    |    99 | second |
+|   10 | santhosh  | varma    |   100 | second |
++------+-----------+----------+-------+--------+
+7 rows in set (0.00 sec)
+
+mysql> savepoint c;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from stu where sno=4;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+--------+
+| sno  | firstname | lastname | marks | class  |
++------+-----------+----------+-------+--------+
+|    5 | abhi      | naidu    |    99 | fourth |
+|    6 | diwakar   | nandan   |   100 | fiveth |
+|    7 | ashwini   | python   |    99 | third  |
+|    8 | mani      | ratnam   |    97 | python |
+|    9 | santhosh  | kumar    |    99 | second |
+|   10 | santhosh  | varma    |   100 | second |
++------+-----------+----------+-------+--------+
+6 rows in set (0.00 sec)
+
+mysql> rollback to c;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+--------+
+| sno  | firstname | lastname | marks | class  |
++------+-----------+----------+-------+--------+
+|    4 | abhilash  | kumar    |    99 | second |
+|    5 | abhi      | naidu    |    99 | fourth |
+|    6 | diwakar   | nandan   |   100 | fiveth |
+|    7 | ashwini   | python   |    99 | third  |
+|    8 | mani      | ratnam   |    97 | python |
+|    9 | santhosh  | kumar    |    99 | second |
+|   10 | santhosh  | varma    |   100 | second |
++------+-----------+----------+-------+--------+
+7 rows in set (0.00 sec)
+
+mysql> rollback to b;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+--------+
+| sno  | firstname | lastname | marks | class  |
++------+-----------+----------+-------+--------+
+|    4 | abhilash  | kumar    |    99 | second |
+|    5 | abhi      | naidu    |    99 | fourth |
+|    6 | diwakar   | nandan   |   100 | fiveth |
+|    7 | ashwini   | python   |    99 | third  |
+|    8 | mani      | ratnam   |    97 | python |
++------+-----------+----------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> rollback to a;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from stu;
++------+-----------+----------+-------+--------+
+| sno  | firstname | lastname | marks | class  |
++------+-----------+----------+-------+--------+
+|    4 | abhilash  | kumar    |    99 | second |
+|    5 | abhi      | naidu    |    99 | fourth |
+|    6 | diwakar   | nandan   |   100 | fiveth |
+|    7 | ashwini   | python   |    99 | third  |
+|    2 | stalin    | mark     |    92 | third  |
++------+-----------+----------+-------+--------+
+5 rows in set (0.00 sec)
+
+mysql>
