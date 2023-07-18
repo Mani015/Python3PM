@@ -1,0 +1,228 @@
+ORM(OBJECT RELEATIONAL MAPPING):
+PROCESSS 1
+C:\Users\DELL\Visual code\Django-Project\projectfive\env\Scripts\projectfive>python manage.py shell
+Python 3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from app1.models import employee
+>>> x=employee.objects.all()
+>>> print(x)
+<QuerySet [<employee: employee object (1)>, <employee: employee object (2)>, <employee: employee object (3)>, <employee: employee object (4)>, <employee: employee object (5)>, <employee: employee object (6)>, <employee: employee object (7)>, <employee: employee object (8)>, <employee: employee object (9)>, <employee: employee object (10)>]>
+>>> print(type(x))
+<class 'django.db.models.query.QuerySet'>
+--------------------------------------------------------------------------------------------------
+HOW TO GET EMPLOYEE DETAILS:
+C:\Users\DELL\Visual code\Django-Project\projectfive\env\Scripts\projectfive>python manage.py shell
+Python 3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from app1.models import employee
+>>> x=employee.objects.get(id=1)
+>>> print(x)
+employee object (1)
+>>> print(x.FirstName)
+ashok
+>>> print(x.LastName)
+kumar
+>>> print(x.salary)
+10000
+>>> y=employee.objects.get(id=2)
+>>> print(y)
+employee object (2)
+>>> print(y.FirstName)
+vijay
+>>> print(y.LastName)
+varma
+-----------------------------------------------------------------------------------------------------------
+Filtering data:
+1.gt=(greater than)
+2.gte=(greater than equal)
+3.contains
+4.icontains
+5.in
+6.endwith
+================
+1.GT
+ z=employee.objects.filter(salary__gt=10000)
+>>> print(z)
+<QuerySet [<employee: employee object (5)>, <employee: employee object (6)>, <employee: employee object (7)>, <employee: employee object (8)>, <employee: employee object (9)>, <employee: employee object (10)>]>
+>>> z=employee.objects.filter(salary__gt=20000)
+>>> print(z)
+<QuerySet [<employee: employee object (5)>, <employee: employee object (6)>, <employee: employee object (7)>, <employee: employee object (8)>, <employee: employee object (9)>]>
+----------------------------------------------
+2.GTE
+ z=employee.objects.filter(salary__gt=10000)
+>>> print(z)
+<QuerySet [<employee: employee object (5)>, <employee: employee object (6)>, <employee: employee object (7)>, <employee: employee object (8)>, <employee: employee object (9)>, <employee: employee object (10)>]>
+>>> z=employee.objects.filter(salary__gt=20000)
+>>> print(z)
+<QuerySet [<employee: employee object (5)>, <employee: employee object (6)>, <employee: employee object (7)>, <employee: employee object (8)>, <employee: employee object (9)>]>
+>>> z=employee.objects.filter(salary__gte=50000)
+>>> print(z)
+<QuerySet [<employee: employee object (5)>, <employee: employee object (7)>, <employee: employee object (8)>, <employee: employee object (9)>]>
+>>> z=employee.objects.filter(salary__gte=30000)
+>>> print(z)
+<QuerySet [<employee: employee object (5)>, <employee: employee object (7)>, <employee: employee object (8)>, <employee: employee object (9)>]>
+>>> z=employee.objects.filter(salary__gte=60000)
+>>> print(z)
+<QuerySet [<employee: employee object (7)>, <employee: employee object (8)>, <employee: employee object (9)>]>
+-----------------------------------------------------------------------------------------------------------------
+3)LTE
+ z=employee.objects.filter(salary__lte=60000)
+>>> print(z)
+<QuerySet [<employee: employee object (1)>, <employee: employee object (2)>, <employee: employee object (3)>, <employee: employee object (4)>, <employee: employee object (5)>, <employee: employee object (6)>, <employee: employee object (9)>, <employee: employee object (10)>]>
+>>> z=employee.objects.filter(salary__lte=40000)
+>>> print(z)
+<QuerySet [<employee: employee object (1)>, <employee: employee object (2)>, <employee: employee object (3)>, <employee: employee object (4)>, <employee: employee object (6)>, <employee: employee object (10)>]>
+---------------------------------------------------------------------------------------------------------------------------
+4)contains: Insentive search -->we see the querry
+ x=employee.objects.get(FirstName__contains='vijay')
+>>> print(x)
+employee object (2)
+>>> x=employee.objects.get(FirstName__contains='bharath')
+>>> print(x)
+employee object (7)
+------------------------------------------------
+5)icontains= Is the case Insensitive
+ x=employee.objects.get(FirstName__icontains='Bharath')
+>>> print(x)
+employee object (7)
+>>> x=employee.objects.get(FirstName__icontains='vijay')
+>>> print(x)
+employee object (2)
+>>> x=employee.objects.get(FirstName__icontains='Ashok')
+>>> print(x)
+employee object (1)
+---------------------------------------------------------------------------------
+6)IN
+ x=employee.objects.filter(id__in=[1,2])
+>>> print(x)
+<QuerySet [<employee: employee object (1)>, <employee: employee object (2)>]>
+>>> x=employee.objects.filter(id__in=[1,5])
+>>> print(x)
+<QuerySet [<employee: employee object (1)>, <employee: employee object (5)>]>
+>>> x=employee.objects.filter(id__in=[1,11])
+>>> print(x)
+<QuerySet [<employee: employee object (1)>]>
+>>> x=employee.objects.filter(id__in=[1,8])
+>>> print(x)
+<QuerySet [<employee: employee object (1)>, <employee: employee object (8)>]>
+--------------------------------------------------------------------------------------------------------
+USING LOGICAL OPERATORS
+1).OR--[|]
+ s=employee.objects.filter(FirstName__startswith='as')|employee.objects.filter(LastName__startswith='ar')
+>>> print(s)
+<QuerySet [<employee: employee object (1)>]>
+>>> s=employee.objects.filter(FirstName__startswith='su')|employee.objects.filter(LastName__startswith='u')
+>>> print(s)
+<QuerySet [<employee: employee object (10)>]>
+>>> s=employee.objects.filter(FirstName__startswith='bh')|employee.objects.filter(LastName__startswith='ku')
+>>> print(s)
+<QuerySet [<employee: employee object (1)>, <employee: employee object (3)>, <employee: employee object (6)>, <employee: employee object (7)>]>
+--------------------------------------------------------------------------------
+AND:
+C:\Users\DELL\Visual code\Django-Project\projectfive\env\Scripts\projectfive>python manage.py shell
+Python 3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from app1.models import employee
+>>> a=employee.objects.filter(FirstName__startswith='sa')& employee.objects.filter(LastName__startswith='ku')
+>>> print(a)
+<QuerySet [<employee: employee object (3)>]>
+>>> a=employee.objects.filter(FirstName__startswith='ash')& employee.objects.filter(LastName__startswith='ku')
+>>> print(a)
+<QuerySet [<employee: employee object (1)>]>
+>>> a=employee.objects.filter(FirstName__startswith='ma')& employee.objects.filter(LastName__startswith='ku')
+>>> print(a)
+<QuerySet []>
+------------------------------------------------------------------------------------------------------------------
+SELECT colums:
+ emp=employee.objects.all().values('FirstName')
+>>> print(emp)
+<QuerySet [{'FirstName': 'ashok'}, {'FirstName': 'vijay'}, {'FirstName': 'sampath'}, {'FirstName': 'santhos'}, {'FirstName': 'sagar'}, {'FirstName': 'vinod'}, {'FirstName': 'bharath'}, {'FirstName': 'david'}, {'FirstName': 'john'}, {'FirstName': 'suresh'}]>
+>>> emp=employee.objects.all().values('LastName')
+>>> print(emp)
+<QuerySet [{'LastName': 'kumar'}, {'LastName': 'varma'}, {'LastName': 'kumar'}, {'LastName': 'babu'}, {'LastName': 'naidu'}, {'LastName': 'kumar'}, {'LastName': 'kumar'}, {'LastName': 'roy'}, {'LastName': 'wilson'}, {'LastName': 'sharma'}]>
+>>> emp=employee.objects.all().values('salary')
+>>> print(emp)
+<QuerySet [{'salary': 10000}, {'salary': 2000}, {'salary': 3000}, {'salary': 4000}, {'salary': 50000}, {'salary': 25000}, {'salary': 70000}, {'salary': 80000}, {'salary': 60000}, {'salary': 20000}]>
+-----------------------------------------------------------------------------------------------
+AGGREGATE FUNCTION
+
+C:\Users\DELL\Visual code\Django-Project\projectfive\env\Scripts\projectfive>python manage.py shell
+Python 3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from app1.models import employee
+>>> from django.db.models import Avg,Sum,Max,Min,Count
+>>> avg=employee.objects.all().aggregate(Avg('salary'))
+>>> print(avg)
+{'salary__avg': 32400.0}
+>>> avg=employee.objects.all().aggregate(Sum('salary'))
+>>> print(avg)
+{'salary__sum': 324000}
+>>> avg=employee.objects.all().aggregate(Max('salary'))
+>>> print(avg)
+{'salary__max': 80000}
+>>> min=employee.objects.all().aggregate(Min('salary'))
+>>> print(min)
+{'salary__min': 2000}
+>>> count=employee.objects.all().aggregate(Count('salary'))
+>>> print(count)
+{'salary__count': 10}
+------------------------------------------------------------------------------------------------------------------------
+ADD DATA :
+Create:
+from appOne.models import Product
+>>> Product.objects.all().count()
+4
+>>> data1= Product(Product_Name = 'honor',Product_Color = 'deepblue',Product_Price = 50000)
+>>> data1.save()
+>>> Product.objects.all().count()
+5
+>>> data1= Product(Product_Name = 'poco',Product_Color = 'winered',Product_Price = 40000)
+>>> data1.save()
+>>> Product.objects.all().count()
+6
+>>> data1= Product(Product_Name = 'nokia',Product_Color = 'grey',Product_Price = 30000)
+>>> data1.save()
+>>> Product.objects.all().count()
+7
+----------------------------------------------------------------------------------------------------------------------
+BULK CREATE:
+ Product.objects.bulk_create([(Product_Name = 'sony',Product_Color = 'black',Product_Price = 80000),Product(Product_Name = 'infinx',Product_Color = 'deepwinered',Product_Price = 20000),Product(Product_Name = 'techno',Product_Color = 'deepblue',Product_Price = 30000)])
+
+DELETE:
+ x = Product.objects.get(Product_Name='vivo')
+>>> x.delete()
+(1, {'appOne.Product': 1})
+
+DELETE BULK OF DATA:
+ y = Product.objects.filter(Product_Price__gt = 30000)
+>>> y.count()
+4
+>>> y.delete()
+(4, {'appOne.Product': 4})
+
+suppose if you want to delete all
+Product.objects.all().delete()
+---------------------------------------------------------------------------------------------------------------------
+UPDATE:
+z = Product.objects.get(Product_Name = 'nokia')
+>>> print(z)
+Product object (8)
+>>> print(z.Product_Color)
+grey
+
+z.Product_Color = 'pink'
+>>> z.save()
+>>> z.Product_Color
+'pink'
+------------------------------------------------------------------
+ASSCENDING ORDER:
+
+x = Product.objects.all().order_by('Product_Price')
+
+DECENDING ORDER:
+
+y = Product.objects.all().order_by('_Product_Price')
