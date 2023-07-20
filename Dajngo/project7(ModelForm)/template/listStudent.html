@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {% if student %}
+    <table border="3">
+      <thead>
+        <th>Id</th>
+        <th>First_Name</th>
+        <th>Last_Name</th>
+        <th>Email</th>
+        <th>Join_Date</th>
+      </thead>
+      {% for i in student %}
+      <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.firstname}}</td>
+        <td>{{i.lastname}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.joindate}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <h2>No RECOREDS</h2>
+    {% endif %}
+
+  </body>
+</html>
