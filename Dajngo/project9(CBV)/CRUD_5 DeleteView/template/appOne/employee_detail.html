@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h3 style='color:blue'>Employee Details:</h3>
+    <ol>
+      <h3><li>Firstname = {{employee.Firstname}}</li></h3>
+      <h3><li>Lastname = {{employee.Lastname}}</li></h3>
+      <h3><li>Email = {{employee.Email}}</li></h3>
+      <h3><li>Salary = {{employee.Salary}}</li></h3>
+      <h2><li><a href="/update/{{employee.id}}">Update</a></li></h2>
+      <h2><li><a href="/delete/{{employee.id}}">Delete</a></li></h2>
+    </ol>
+    <a href="/list">Back</a>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h3>Employee Confirm Delete ?</h3>
+    <form  method="post">
+      {% csrf_token %}
+      <input type="submit" name="" value="Confirm"><br/>
+      <a href="/{{emp.id}}">Cancel</a>
+    </form>
+<a href="/list">Back</a>
+  </body>
+</html>

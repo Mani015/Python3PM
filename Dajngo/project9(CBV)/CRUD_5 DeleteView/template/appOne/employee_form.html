@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h2>Employee Form</h2>
+    <form class=""  method="post">
+      <table>
+        {{form.as_table}}
+        {% csrf_token %}
+      </table>
+      <input type="submit" name="" value="Save">
+    </form>
+  </body>
+</html>
