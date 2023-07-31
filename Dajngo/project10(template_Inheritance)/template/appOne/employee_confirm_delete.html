@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+{% extends 'appOne\base.html'%}
+{% block body_block %}
+    <h3>Employee Confirm Delete ?</h3>
+    <form  method="post">
+      {% csrf_token %}
+      <input type="submit" name="" value="Confirm"><br/>
+      <a href="/{{emp.id}}">Cancel</a>
+    </form>
+<a href="/list">Back</a>
+  {% endblock %}
