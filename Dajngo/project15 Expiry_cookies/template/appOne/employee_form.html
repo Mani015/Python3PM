@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends 'appOne\base.html'%}
+{% block body_block %}
+    <h2>Employee Form</h2>
+    <form class=""  method="post">
+      <table>
+        {{form.as_table}}
+        {% csrf_token %}
+      </table>
+      <input type="submit" name="" value="Save">
+    </form>
+  {% endblock %}
