@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>ADD Item:</h1>
+
+    <form  method="post">
+       <table>
+      {{form.as_table}}
+      {% csrf_token %}
+      <br><br>
+      <input type="Submit" name="" value="Save">
+      </table>
+    </form>
+
+      <a href="/">Back</a>
+  </body>
+</html>
