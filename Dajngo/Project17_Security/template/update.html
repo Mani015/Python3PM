@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 style="color:pink">Update Product Details:</h2>
+<form method="post">
+    <table>
+        {{form.as_table}}
+        {% csrf_token %}
+        brandName: <input type="text" name="Brandname" value="{{i.Brandname}}"><br/>
+        brandColor: <input type="text" name="Brandcolor" value="{{i.Brandcolor}}"><br/>
+        brandPrice: <input type="text" name="Brandprice" value="{{i.Brandprice}}"><br/>
+
+
+        <input type="submit" name="" value="Save">
+      </table>
+
+</form>
+
+</body>
+</html>
