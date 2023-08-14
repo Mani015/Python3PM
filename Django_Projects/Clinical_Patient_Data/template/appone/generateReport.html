@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<title>Clinical Data Form</title>
+<link rel="stylesheet" href="{% static "css/clinicals.css" %}">
+</head>
+<body>
+<h1>Clinical Report:</h1>
+<table border='2'>
+    <thead>
+        <th>Component Name</th>
+        <th>Component Value</th>
+        <th>Measure Data Time</th>
+    </thead>
+    {% for entryData in data %}
+    <tr>
+        <td>{{entryData.componentName}}</td>
+        <td>{{entryData.componentValue}}</td>
+        <td>{{entryData.measureDateTime}}</td>
+    </tr>
+    {%endfor%}
+</table>
+<a href="/">HomePage</a>
+</body>
+</html>

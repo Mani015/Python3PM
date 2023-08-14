@@ -1,0 +1,30 @@
+        Patient Clinical Data Collection User Stories
+User Story 1
+As a lab assistant I want to view all the patient records
+	. Dispaly all the patients details with their id, firstname , lastname and age
+	. Display the link to enter clinical data for  each patient
+	. Display the link to analyze data for each patient
+	. Display the link to register new patients
+
+User Story 2
+As the lab assistance , I want to register a new patient Acceptance Criteria.
+	. On Click of the Add patient link the user should be navigated to the patient register screen
+	. The user should see a form that he can fill in with patient details namely firstname, lastname, age
+	. when the use click the confirm button the data should be saved and a conformation message should be displayed
+	. The use should be able to navigation back to the home page
+
+User Story 3
+As a lab assistance , I want to enter clincial data for a patient
+
+Acceptance Criteria:
+	. On Click of the Add Data link on the home page the user should be navigated to the clinical data entry screen
+	.The user should see a form that he can fill in with patient details such as bp height and weight or heart rate 
+
+User Story 4
+As a lab assistance , I want to analyse and see a report of the latest tests
+
+Acceptance Criteria :
+	. On clikc of the Analyze Data link on the home page the use should be navigated to page where he can see the latest entries for variaous clinical 
+           data
+	. The Body mass Index should be displayed based on height and weight of the patient
+	. The user should see a link to a graph that will show the clinical reading on a line chart over time

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<title>Clinical Data Form</title>
+<link rel="stylesheet" href="{% static "css/clinicals.css" %}">
+</head>
+<body>
+<h1>Patient Data:</h1>
+<table border='2'>
+    <thead>
+        <th>ID</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Age</th>
+    </thead>
+    {% for patient in patient_list %}
+    <tr>
+        <td>{{patient.id}}</td>
+        <td>{{patient.Firstname}}</td>
+        <td>{{patient.Lastname}}</td>
+        <td>{{patient.Age}}</td>
+        <td><a href="/update/{{patient.id}}">Update</td>
+        <td><a href="/delete/{{patient.id}}">Delete</td>
+        <td><a href="/adddata/{{patient.id}}">AddData</td>
+        <td><a href="/analyze/{{patient.id}}">Analyze Data</td>
+    </tr>
+    {% endfor%}
+</table>
+<br/>
+<a href = "patient/">Add Patient</a>
+</body>
+</html>
