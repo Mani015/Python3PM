@@ -1,9 +1,0 @@
-How to provied authentication:
-To secure the CRUD Operation:
-These steps will be follows
-# Security: Authentication:
-# 1).add the auth urls
-# 2).Create login form
-# 3).Secure the views
-# 4).Create user
-# 5).Test
