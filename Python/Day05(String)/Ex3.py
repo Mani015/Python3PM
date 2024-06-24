@@ -39,3 +39,4 @@ print(Name[2::2])
 x = "python is a general purpose programming language"
 print(x[2::2])
 # pto sagnrlproepormiglnug
+
